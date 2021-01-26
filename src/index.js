@@ -23,6 +23,7 @@ class Footer extends React.Component {
     super(props)
   }
 
+  //TODO: right-align version
   render() {
     return (
       <footer class="footer mt-auto py-3 bg-light">
