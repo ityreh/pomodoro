@@ -7,8 +7,8 @@ The pomodor technique is a time management method invented by [Francesco Cirillo
 3. Work on the task focused
 4. Stop work when the timer rings
 5. Let x be the number of pomodoro done, then if
-    - % 4 = 0 --> take a short 3-5 minute break
-    - else    --> take a longer break of 15-30 minutes
+    - x % 4 = 0 --> take a short 3-5 minute break
+    - else      --> take a longer break of 15-30 minutes
 
 You can practice this method with a mechanical timer, pen and paper and that would be totally fine. For me this was the best way to experiment with the method and to evaluate wether the method suits me. If you are 100% happy - stay with it and keep going.
 
