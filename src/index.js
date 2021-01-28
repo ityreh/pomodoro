@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TaskList from './components/TaskList';
 import Timer from './components/Timer';
 import './index.css';
 
@@ -47,6 +48,7 @@ class App extends React.Component {
       <div>
         <Navbar />
         <Timer />
+        <TaskList />
         <Footer version={this.state.version} />
       </div>
     );

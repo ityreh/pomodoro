@@ -7,7 +7,7 @@ class Timer extends React.Component {
         this.state = {
             date: new Date(),
             on: false,
-            start: 0,
+            startTime: 0,
             timeLeft: 25 * 60 * 1000
         };
     }
@@ -28,11 +28,11 @@ class Timer extends React.Component {
         );
     }
 
-    startTimer = () => {
+    startTimeTimer = () => {
         this.setState({
             on: true,
             timeLeft: this.state.timeLeft,
-            start: this.state.timeLeft
+            startTime: this.state.timeLeft
         });
         this.timer = setInterval(() => {
             const newTime = this.state.timeLeft - 10;
@@ -52,7 +52,7 @@ class Timer extends React.Component {
     };
 
     render() {
-        const { date, on, start, timeLeft } = this.state;
+        const { date, on, timeLeft } = this.state;
         let seconds = ("0" + (Math.floor((timeLeft / 1000) % 60) % 60)).slice(-2);
         let minutes = ("0" + Math.floor((timeLeft / 60000) % 60)).slice(-2);
         //let hours = ("0" + Math.floor((timeLeft / 3600000) % 60)).slice(-2);
@@ -73,10 +73,10 @@ class Timer extends React.Component {
                     </div>
                     <div class="col-sm">
                         {on === false && (
-                            <button type="button" class="btn btn-primary" onClick={this.startTimer}>Start</button>
+                            <button type="button" class="btn btn-primary" onClick={this.startTimeTimer}>startTime</button>
                         )}
                         {on === true && (
-                            <button type="button" class="btn btn-primary" disabled>Start</button>
+                            <button type="button" class="btn btn-primary" disabled>startTime</button>
                         )}
                     </div>
                 </div>
