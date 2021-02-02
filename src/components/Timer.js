@@ -10,6 +10,9 @@ class Timer extends React.Component {
             startTime: 0,
             timeLeft: 25 * 60 * 1000
         };
+
+        this.handleTaskTitleChange = this.handleTaskTitleChange.bind(this);
+        this.handleTimerStart = this.handleTimerStart.bind(this);
     }
 
     componentDidMount() {
@@ -26,6 +29,23 @@ class Timer extends React.Component {
         this.setState(
             { date: new Date() }
         );
+    }
+
+    endTime(startTime) {
+        return startTime;
+        //TODO:
+        //return startTime.setMinutes(startTime.getMinutes() + 25);
+    }
+
+    handleTaskTitleChange(event) {
+        this.setState({ taskTitle: event.target.value });
+    }
+
+    handleTimerStart(event) {
+        alert('A task was started: ' + this.state.taskTitle);
+        //this.startTimer();
+        this.props.handleTimerStart(this.state.taskTitle, this.state.startTime, this.endTime(this.state.startTime));
+        event.preventDefault();
     }
 
     startTimeTimer = () => {
@@ -68,12 +88,12 @@ class Timer extends React.Component {
                     </div>
                     <div class="col-sm">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="What do you want to work on?" />
+                            <input type="text" class="form-control" id="floatingInput" placeholder="What do you want to work on?" onChange={this.handleTaskTitleChange} />
                         </div>
                     </div>
                     <div class="col-sm">
                         {on === false && (
-                            <button type="button" class="btn btn-primary" onClick={this.startTimeTimer}>startTime</button>
+                            <button type="button" class="btn btn-primary" onClick={this.handleTimerStart}>startTime</button>
                         )}
                         {on === true && (
                             <button type="button" class="btn btn-primary" disabled>startTime</button>
