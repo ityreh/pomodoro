@@ -1,5 +1,12 @@
+:root{
+  --primary: #d50000;
+  --primary-dark: #9b0000;
+  --primary-light: #ff5131;
+  --primary-text: #ffffff;
+}
+
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font: 14px Roboto, "Century Gothic", Futura, sans-serif;
   background-color: whitesmoke;
 }
 

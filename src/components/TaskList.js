@@ -1,6 +1,10 @@
 import React from 'react';
 
 class TaskList extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         const tasks = this.props.tasks;
 
@@ -10,7 +14,7 @@ class TaskList extends React.Component {
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>title</th>
+                                <th>Title</th>
                                 <th>StartTime</th>
                                 <th>EndTime</th>
                             </tr>

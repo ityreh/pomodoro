@@ -38,16 +38,21 @@ class App extends React.Component {
         super(props)
         this.state = {
             version: "0.0.1",
-            tasks: []
+            tasks: [{
+                title: "Test",
+                startTime: "1234",
+                endTime: "1234"
+            }]
         }
 
         this.handleTimerStart = this.handleTimerStart.bind(this);
     }
 
     handleTimerStart(taskTitle, startTime, endTime) {
-        let stateTasks = this.state.tasks.slice(); //creates the clone of the state
-        stateTasks[stateTasks.length] = { title: { taskTitle }, startTime: { startTime }, endTime: { endTime } };
-        this.setState({ tasks: stateTasks });
+        let a = { title: { taskTitle }, startTime: { startTime }, endTime: { endTime } };
+        this.setState({ tasks: [...this.state.tasks, ...a] })
+        //this.setState({ tasks: this.state.tasks.push(a) });
+        //alert('TaskList: ' + this.state.tasks);
     }
 
     render() {
