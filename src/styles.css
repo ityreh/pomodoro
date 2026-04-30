@@ -1,1 +1,66 @@
-/* You can add global styles to this file, and also import other style files */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --color-tomato: #E5534B;
+  --color-tomato-dark: #C7352D;
+  --color-tomato-hover: #D94540;
+  --color-tomato-light: #FEF2F1;
+  --color-tomato-muted: #FDDCDA;
+
+  --color-green: #3BAF74;
+  --color-green-dark: #2D9162;
+  --color-green-light: #EDFAF3;
+
+  --color-blue: #4B7CF3;
+  --color-blue-dark: #3563D8;
+  --color-blue-light: #EEF3FE;
+
+  --color-amber: #F59E0B;
+
+  --color-white: #FFFFFF;
+  --color-bg: #F4F4F7;
+  --color-surface: #FFFFFF;
+  --color-border: #E4E4E9;
+  --color-border-light: #F0F0F4;
+
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #64748B;
+  --color-text-muted: #94A3B8;
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input, select, button, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+a { text-decoration: none; color: inherit; }

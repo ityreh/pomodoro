@@ -1,0 +1,115 @@
+<div class="modal-backdrop" (click)="onBackdropClick($event)" role="dialog" aria-modal="true" aria-label="Timer Settings">
+  <div class="modal-panel">
+
+    <div class="modal-header">
+      <h2 class="modal-title">Settings</h2>
+      <button class="btn-close" (click)="close()" aria-label="Close settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Timer Durations -->
+      <section class="settings-section">
+        <h3 class="section-title">Timer (minutes)</h3>
+        <div class="duration-grid">
+          <div class="duration-field">
+            <label class="field-label">Pomodoro</label>
+            <input
+              type="number"
+              class="number-input"
+              [(ngModel)]="local.pomodoroDuration"
+              min="1" max="90" step="1"
+            />
+          </div>
+          <div class="duration-field">
+            <label class="field-label">Short Break</label>
+            <input
+              type="number"
+              class="number-input"
+              [(ngModel)]="local.shortBreakDuration"
+              min="1" max="30" step="1"
+            />
+          </div>
+          <div class="duration-field">
+            <label class="field-label">Long Break</label>
+            <input
+              type="number"
+              class="number-input"
+              [(ngModel)]="local.longBreakDuration"
+              min="1" max="60" step="1"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Long Break Interval -->
+      <section class="settings-section">
+        <h3 class="section-title">Long Break Interval</h3>
+        <div class="field-row">
+          <span class="field-desc">Long break after every</span>
+          <input
+            type="number"
+            class="number-input number-input--sm"
+            [(ngModel)]="local.longBreakInterval"
+            min="1" max="10" step="1"
+          />
+          <span class="field-desc">pomodoros</span>
+        </div>
+      </section>
+
+      <!-- Auto-start -->
+      <section class="settings-section">
+        <h3 class="section-title">Auto-start</h3>
+        <div class="toggle-group">
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <span class="toggle-label">Auto-start Breaks</span>
+              <span class="toggle-desc">Start break timer automatically</span>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" [(ngModel)]="local.autoStartBreaks" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <span class="toggle-label">Auto-start Pomodoros</span>
+              <span class="toggle-desc">Start work timer after break</span>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" [(ngModel)]="local.autoStartPomodoros" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sound -->
+      <section class="settings-section">
+        <h3 class="section-title">Notifications</h3>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <span class="toggle-label">Sound Alerts</span>
+            <span class="toggle-desc">Play sound when timer ends</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" [(ngModel)]="local.soundEnabled" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="close()">Cancel</button>
+      <button class="btn-save-settings" (click)="save()">Save Changes</button>
+    </div>
+
+  </div>
+</div>

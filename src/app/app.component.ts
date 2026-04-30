@@ -1,14 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { TimerComponent } from './components/timer/timer.component';
+import { TimeLogComponent } from './components/time-log/time-log.component';
+import { SettingsModalComponent } from './components/settings-modal/settings-modal.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, TimerComponent, TimeLogComponent, SettingsModalComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'pomodoro';
+  showSettings = signal(false);
+
+  toggleSettings(): void {
+    this.showSettings.update(v => !v);
+  }
 }
