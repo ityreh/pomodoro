@@ -1,0 +1,142 @@
+<div class="timer-panel" [class]="'mode-' + timer.mode()">
+
+  <!-- Mode tabs -->
+  <div class="mode-tabs">
+    <button
+      class="mode-tab"
+      [class.active]="timer.mode() === 'pomodoro'"
+      (click)="setMode('pomodoro')">
+      Pomodoro
+    </button>
+    <button
+      class="mode-tab"
+      [class.active]="timer.mode() === 'short-break'"
+      (click)="setMode('short-break')">
+      Short Break
+    </button>
+    <button
+      class="mode-tab"
+      [class.active]="timer.mode() === 'long-break'"
+      (click)="setMode('long-break')">
+      Long Break
+    </button>
+  </div>
+
+  <!-- SVG Circle Timer -->
+  <div class="circle-wrapper">
+    <svg viewBox="0 0 300 300" class="timer-svg" aria-hidden="true">
+      <circle class="track" cx="150" cy="150" r="120" />
+      <circle
+        class="progress-ring"
+        cx="150" cy="150" r="120"
+        [attr.stroke-dasharray]="circumference"
+        [attr.stroke-dashoffset]="dashOffset"
+        transform="rotate(-90 150 150)"
+      />
+    </svg>
+    <div class="circle-content" [class.flash]="justCompleted">
+      <span class="time-display">{{ formattedTime }}</span>
+      <span class="mode-name">{{ modeLabel }}</span>
+      @if (timer.state() === 'completed') {
+        <span class="done-badge">Complete!</span>
+      }
+    </div>
+  </div>
+
+  <!-- Task input area -->
+  <div class="task-area">
+    <input
+      type="text"
+      class="task-input"
+      placeholder="What are you working on?"
+      [(ngModel)]="currentDescription"
+      maxlength="80"
+    />
+
+    <div class="project-row">
+      <span
+        class="project-dot"
+        [style.background-color]="selectedProjectColor">
+      </span>
+      <select class="project-select" [(ngModel)]="currentProjectId">
+        <option value="">No project</option>
+        @for (p of projectService.projects(); track p.id) {
+          <option [value]="p.id">{{ p.name }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button
+      class="btn-icon"
+      (click)="reset()"
+      [disabled]="timer.state() === 'idle'"
+      title="Reset timer"
+      aria-label="Reset">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="1 4 1 10 7 10"/>
+        <path d="M3.51 15a9 9 0 1 0 .49-3.6"/>
+      </svg>
+    </button>
+
+    <button
+      class="btn-primary"
+      (click)="toggleStartPause()"
+      [attr.aria-label]="timer.state() === 'running' ? 'Pause' : 'Start'">
+      @if (timer.state() === 'running') {
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <rect x="6" y="4" width="4" height="16"/>
+          <rect x="14" y="4" width="4" height="16"/>
+        </svg>
+        <span>Pause</span>
+      } @else if (timer.state() === 'completed') {
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M5 3l14 9-14 9V3z"/>
+        </svg>
+        <span>Next</span>
+      } @else {
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M5 3l14 9-14 9V3z"/>
+        </svg>
+        <span>{{ timer.state() === 'paused' ? 'Resume' : 'Start' }}</span>
+      }
+    </button>
+
+    <button
+      class="btn-icon"
+      (click)="setMode(timer.mode() === 'pomodoro' ? 'short-break' : 'pomodoro')"
+      title="Skip to next phase"
+      aria-label="Skip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="5 4 15 12 5 20 5 4"/>
+        <line x1="19" y1="5" x2="19" y2="19"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-icon">🍅</span>
+      <span class="stat-value">{{ entryService.todayPomodoroCount() }}</span>
+      <span class="stat-label">today</span>
+    </div>
+    @if (entryService.todayTotalSeconds() > 0) {
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-value">{{ formatDuration(entryService.todayTotalSeconds()) }}</span>
+        <span class="stat-label">focused</span>
+      </div>
+    }
+    @if (timer.mode() === 'pomodoro') {
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-value">{{ pomodorosUntilLongBreak }}</span>
+        <span class="stat-label">until long break</span>
+      </div>
+    }
+  </div>
+
+</div>

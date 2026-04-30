@@ -1,21 +1,57 @@
-# pomodoro
+# Pomodoro Focus
 
-The pomodor technique is a time management method invented by [Francesco Cirillo](https://francescocirillo.com/) and it is simply explained:
+A Pomodoro timer with built-in time tracking.
 
-1. Define the task you want to work on
-2. Set a timer to 25 minutes
-3. Work on the task focused
-4. Stop work when the timer rings
-5. Let x be the number of pomodoro done, then if
-    - x % 4 = 0 --> take a short 3-5 minute break
-    - else      --> take a longer break of 15-30 minutes
+## What is the Pomodoro Technique?
 
-You can practice this method with a mechanical timer, pen and paper and that would be totally fine. For me this was the best way to experiment with the method and to evaluate wether the method suits me. If you are 100% happy - stay with it and keep going.
+The Pomodoro Technique is a time management method invented by [Francesco Cirillo](https://francescocirillo.com/). The idea is simple:
 
-If you want some more features and you find them in the follwoing list, give this pomodoro app a try.
+1. Decide on a task to work on
+2. Set a timer for 25 minutes and work with full focus
+3. Take a short 5-minute break when the timer rings
+4. After every 4 pomodoros, take a longer 15-minute break
 
-- Digital Timer that gives a melodious or visual signal when 25 minutes are over
-- Save your task definition for review
-- Export a timesheet with day, week, month and year report
+Alternating focused work with structured breaks reduces mental fatigue and keeps you productive throughout the day.
 
-If you do not find the feature you are looking for in this list, feel free to open an issue and we will discuss the implementation.
+## Features
+
+### Timer
+- Three modes: **Pomodoro** (25 min) · **Short Break** (5 min) · **Long Break** (15 min)
+- Animated SVG circular progress ring, color-coded per mode
+- Label your current task and assign it to a project before starting
+- Live countdown shown in the browser tab title
+- Audio notification when a session ends (Web Audio API — no files needed)
+- Auto-start breaks or pomodoros optionally
+
+### Time Tracking
+- Every completed Pomodoro is automatically saved as a time entry
+- Entries grouped by day with daily total (like Clockify's time log)
+- Edit description or project on any entry inline
+- Delete entries with a confirmation step
+
+### Projects
+- Four built-in projects: Work · Personal · Learning · Health
+- Color-coded badges on every entry
+
+### Settings
+- Configurable durations for all three timer modes
+- Set the long break interval (default: every 4 pomodoros)
+- Toggle auto-start for breaks and pomodoros
+- Toggle sound notifications
+
+### Responsive Design
+- Two-column layout on desktop (timer + log side by side)
+- Stacked single-column layout on mobile
+
+## Getting Started
+
+```bash
+npm install
+npm start
+```
+
+Open [http://localhost:4200](http://localhost:4200).
+
+## Contributing
+
+If you're missing a feature, open an issue and we can discuss the implementation.
